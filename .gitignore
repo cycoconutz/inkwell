@@ -1,0 +1,14 @@
+/vendor/
+node_modules/
+*.log
+.DS_Store
+.env
+.phpunit.cache/
+coverage/
+dist/
+build/
+*.sqlite
+/.idea
+/.vscode
+*.swp
+*.swo

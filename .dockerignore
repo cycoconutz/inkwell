@@ -1,0 +1,13 @@
+.git
+.github
+Dockerfile
+docker-compose.yml
+node_modules
+vendor
+tests
+phpunit.xml
+coverage
+.env
+*.log
+*.sqlite
+README.md

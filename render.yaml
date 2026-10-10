@@ -1,0 +1,55 @@
+services:
+  - type: web
+    name: inkwell
+    env: docker
+    plan: free
+    buildCommand: ""
+    startCommand: "apache2-foreground"
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /healthz
+    envVars:
+      - key: APP_NAME
+        value: Inkwell
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_URL
+        sync: false
+      - key: SESSION_NAME
+        value: inkwell_session
+      - key: DB_HOST
+        fromService:
+          name: inkwell-db
+          type: pserv
+          property: host
+      - key: DB_PORT
+        fromService:
+          name: inkwell-db
+          type: pserv
+          property: port
+      - key: DB_DATABASE
+        fromService:
+          name: inkwell-db
+          type: pserv
+          property: database
+      - key: DB_USERNAME
+        fromService:
+          name: inkwell-db
+          type: pserv
+          property: username
+      - key: DB_PASSWORD
+        fromService:
+          name: inkwell-db
+          type: pserv
+          property: password
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+
+databases:
+  - name: inkwell-db
+    plan: free
+    databaseName: inkwell
+    user: inkwell
